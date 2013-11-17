@@ -1,0 +1,62 @@
+.bordered {
+    border: 2px solid #999;
+}
+
+.colored {
+    color: #999;
+}
+
+.centered {
+    text-align: center;
+}
+
+.handed {
+    cursor: pointer;
+}
+
+.bolded {
+    font-weight: bold;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.bg-white:hover {
+    background-color: #ccc !important;
+}
+
+.ts-logo {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+    margin-left: 1em;
+}
+
+.tweet>a{
+    font-weight: bold;
+}
+
+.tweet-default, .tweet-default>a, .tweet-default>a:hover {
+    color: #999;
+}
+
+.tweet-primary, .tweet-primary>a, .tweet-primary>a:hover {
+    color: #8fc38f;
+}
+
+.tweet-success, .tweet-success>a, .tweet-success>a:hover {
+    color: #468847;
+}
+
+.tweet-info, .tweet-info>a, .tweet-info>a:hover {
+    color: #dc9492;
+}
+
+.tweet-warning, .tweet-warning>a, .tweet-warning>a:hover {
+    color: #c09853;
+}
+
+.tweet-danger, .tweet-danger>a, .tweet-danger>a:hover {
+    color: #b94a48 ;
+}
+

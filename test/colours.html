@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tweets Sentiment helps you to know if the tweets feeling of a topic is positive or negative.</title>
+
+    <meta name="title" content="Tweets Sentiment">
+    <meta name="DC.Title" content="Tweets Sentiment">
+    <meta http-equiv="title" content="Tweets Sentiment">
+    <meta name="keywords" content="tweets, analyze, sentiment, feeling, positive, negative">
+    <meta http-equiv="keywords" content="tweets, analyze, sentiment, feeling, positive, negative">
+    <meta name="description" content="Tweets Sentiment is a tweets analyzer which
+    extracts semantic information to know if the general tweets feeling about a topic is positive or negative.">
+    <meta http-equiv="description" content="Tweets Sentiment is a tweets analyzer which
+    extracts semantic information to know if the general tweets feeling about a topic is positive or negative.">
+    <meta http-equiv="DC.Description" content="Tweets Sentiment is a tweets analyzer which
+    extracts semantic information to know if the general tweets feeling about a topic is positive or negative.">
+    <meta name="author" content="Adolfo Sanz De Diego (@asanzdiego)">
+    <meta name="DC.Creator" content="Adolfo Sanz De Diego (@asanzdiego)">
+    <meta name="vw96.objectype" content="Document">
+    <meta name="resource-type" content="Document">
+    <meta http-equiv="Content-Type" content="ISO-8859-1">
+    <meta name="distribution" content="all">
+    <meta name="robots" content="all">
+    <meta name="revisit" content="15 days">
+    <meta name="HandheldFriendly" content="True">
+
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link type="image/x-icon" href="../img/ts-logo.png" rel="icon" />
+
+    <link rel="stylesheet" type="text/css" href="../css/tweets-sentiment.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="../lib/lungo/lungo.icon.css" media="all" />
+
+    <!-- Latest compiled and minified Bootstrap core CSS -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+      <div class="container">
+
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="http://tweetssentiment.com">
+            <img class="img-responsive pull-left ts-logo hidden-xs"
+              src="../img/ts-logo.png" alt="Tweets Sentiment Logo"/></a>
+          <a class="navbar-brand" href="http://tweetssentiment.com">
+            Tweets Sentiment</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">
+                <span class="icon search"></span>" Search</a></li>
+            <li><a href="about.html">
+                <span class="icon info-sign"></span>" About</a></li>
+            <li><a href="#" id="share-link-navbar" target="_blank">
+                <span class="icon share"></span>" Share</a></li>
+            <li><a href="mailto:info.tweetssentiment@gmail.com" target="_blank">
+                <span class="icon envelope"></span>" Mail</a></li>
+            <li><a href="http://twitter.com/TweetsSentiment" target="_blank">
+                <span class="icon twitter"></span>" Twitter</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="jumbotron">
+         <h1 class="visible-lg">size = lg</h1>
+         <h1 class="visible-md">size = md</h1>
+         <h1 class="visible-sm">size = sm</h1>
+         <h1 class="visible-xs">size = xs</h1>
+         <h2>Testing colours</h2>
+      </div>
+    </div>
+
+  <div class="container">
+
+   <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-default centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">default <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-default">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-default">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-success centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">success <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-success">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-success">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-primary centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">primary <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-primary">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-primary">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-warning centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">warning <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-warning">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-warning">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-info centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">info <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-info">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-info">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"
+     data-action="search">
+     <div class="panel panel-danger centered">
+      <div class="panel-heading">
+       <h3 class="panel-title bolded">danger <small>small</small></h3>
+      </div>
+      <div class="panel-body">
+       <p class="tweet tweet-danger">Hola patatin <a href="#">patatan</a></p>
+       <p><a href=";#" target="_blank" class="btn btn-sm btn-danger">
+         <span class="icon retweet"></span> Share</a></p>
+      </div>
+     </div>
+    </div>
+
+   </div>
+ 
+  </div>
+
+    <div class="container" style="background-color: #777">
+      <p>@brand-primary "<span style="color:#428bca">#428bca</span>"
+        por "<span style="color:#9fdc9f">#9fdc9f</span>"</p>
+      <p>@brand-success "<span style="color:#5cb85c">#5cb85c</span>"</p>
+      <p>@brand-warning "<span style="color:#f0ad4e">#f0ad4e</span>"</p>
+      <p>@brand-danger "<span style="color:#d9534f">#d9534f</span>"</p>
+      <p>@brand-info "<span style="color:#5bc0de">#5bc0de</span>"
+        por "<span style="color:#ec9c99">#ec9c99</span>"</p>
+      <p></p>
+      <p>@link-color "<span style="color:#428bca">@brand-primary</span>"
+        por "<span style="color:#428bca">#428bca</span>"</p>
+      <p></p>
+      <p>@btn-default-color "<span style="color:#333">#333</span>"
+        por "<span style="color:#999">#999</span>"</p>
+      <p>@btn-default-bg "<span style="color:#fff">#fff</span>"
+        por "<span style="color:#eee">#eee</span>"</p>
+      <p>@btn-default-border "<span style="color:#ccc">#ccc</span>"</p>
+      <p></p>
+      <p>@state-success-text "<span style="color:#468847">#468847</span>"</p>
+      <p>@state-success-bg "<span style="color:#dff0d8">#dff0d8</span>"</p>
+      <p></p>
+      <p>@state-info-text "<span style="color:#3a87ad">#3a87ad</span>"
+        por "<span style="color:#dc9492">#dc9492</span>"</p>
+      <p>@state-info-bg "<span style="color:#d9edf7">#d9edf7</span>"
+        por "<span style="color:#f9eded">#f9eded</span>"</p>
+      <p></p>
+      <p>@state-warning-text "<span style="color:#c09853">#c09853</span>"</p>
+      <p>@state-warning-bg "<span style="color:#fcf8e3">#fcf8e3</span>"</p>
+      <p></p>
+      <p>@state-danger-text "<span style="color:#b94a48">#b94a48</span>"</p>
+      <p>@state-danger-bg "<span style="color:#f2dede">#f2dede</span>"</p>
+      <p></p>
+      <p>@gray-darker "<span style="color:#222">#222</span>"</p>
+      <p>@gray-dark "<span style="color:#333">#333</span>"</p>
+      <p>@gray "<span style="color:#555">#555</span>"</p>
+      <p>@gray-light "<span style="color:#999">#999</span>"</p>
+      <p>@gray-lighter "<span style="color:#eee">#eee</span>"</p>
+      <p></p>
+      <p>@panel-default-text "<span style="color:@gray-dark">@gray-dark</span>"
+        por "<span style="color:@gray-light">@gray-light</span>"</p>
+      <p></p>
+      <p>@panel-primary-text "<span style="color:#fff">#fff</span>"
+        por "<span style="color:#8fc38f">#8fc38f</span>"</p>
+      <p>@panel-primary-heading-bg <small>@brand-primary</small>
+        por "<span style="color:#eef8ea">#eef8ea</span>"</p>
+      <p>@panel-primary-border <small>@brand-primary</small>
+        por <small>darken(spin(@panel-primary-heading-bg, -10), 7%)</small></p>
+    </div>
+
+    <!--   Latest compiled and minified Bootstrap core JavaScript   -->
+    <!-- ========================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- Others - Dependencies -->
+    <script src="./js/util/share-link.js"></script>
+
+  </body>
+</html>
+
