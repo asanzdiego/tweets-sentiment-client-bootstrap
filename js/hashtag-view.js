@@ -3,67 +3,70 @@ $('document').ready(function(){
     var hashtagText = util_urlParams['q'];
     var data = {};
 
-    // get data from server
-    var getDataFromServer = function(retries){
+    var getDataFromServerRecursive = function(retries){
 
+        console.log('retries =', retries);
         updateProgessBar(retries);
 
-        if ( retries%2 === 0 ) {
+        if ( retries === 1 || retries%util_eachGetRequestRetrie === 0 ) {
 
-            setTimeout(function(){
-                getDataFromServer(retries+1);
-            }, util_millBetweenRequestRetries);
+            getDataFromServer(retries);
 
         } else {
 
-            util_ajaxGet('/search/'+hashtagText, data, function(json) {
-
-                if(!json || json.error) {
-
-                    $('#progessbar').hide();
-                    $('#internal-server-error').removeClass('hidden');
-                    console.log('ERROR retrieving hashtag', json.error);
-
-                } else {
-
-                    var hashtag = json;
-                    console.log('Hashtag retrieved');
-
-                    if (hashtag.lastScoreTag === 'NOT_ANALYZED') {
-
-                        console.log('Hashtag not analyzed');
-                        console.log('retries =', retries);
-
-                        if( retries < util_requestRetries ) {
-
-                            setTimeout(function(){
-                                getDataFromServer(retries+1);
-                            }, util_millBetweenRequestRetries);
-
-                        } else {
-
-                            $('#progessbar').hide();
-                            $('#internal-server-error').removeClass('hidden');
-                            console.log('ERROR retrieving hashtag', 'tried '+retries+' retries');
-                        }
-
-                    } else {
-
-                        var score = util_scoreImageAndColor(hashtag.lastScore, hashtag.lastScoreTag);
-
-                        shareLink(score, hashtag);
-                        drawHashtag(score, hashtag);
-                        drawHashtagHistory(hashtag);
-                        drawTweets(score, hashtag.lastTweetsAnalyzed);
-                    }
-                }
-            });
+            setTimeout(function(){
+                getDataFromServerRecursive(retries+1);
+            }, util_millBetweenRequestRetries);
         }
     };
 
+    var getDataFromServer = function(retries){
+
+        util_ajaxGet('/search/'+hashtagText, data, function(json) {
+
+            if(!json || json.error) {
+
+                $('#progessbar').hide();
+                $('#internal-server-error').removeClass('hidden');
+                console.log('ERROR retrieving hashtag', json.error);
+
+            } else {
+
+                var hashtag = json;
+                console.log('Hashtag retrieved');
+
+                if (hashtag.lastScoreTag === 'NOT_ANALYZED') {
+
+                    console.log('Hashtag not analyzed');
+
+                    if( retries < util_numberRequestRetries ) {
+
+                        setTimeout(function(){
+                            getDataFromServerRecursive(retries+1);
+                        }, util_millBetweenRequestRetries);
+
+                    } else {
+
+                        $('#progessbar').hide();
+                        $('#internal-server-error').removeClass('hidden');
+                        console.log('ERROR retrieving hashtag', 'tried '+retries+' retries');
+                    }
+
+                } else {
+
+                    var score = util_scoreImageAndColor(hashtag.lastScore, hashtag.lastScoreTag);
+
+                    shareLink(score, hashtag);
+                    drawHashtag(score, hashtag);
+                    drawHashtagHistory(hashtag);
+                    drawTweets(score, hashtag.lastTweetsAnalyzed);
+                }
+            }
+        });
+    };
     var updateProgessBar = function(retries) {
 
-        var percentage = Math.floor((retries-1)*100/util_requestRetries);
+        var percentage = Math.floor((retries-1)*100/util_numberRequestRetries);
         //console.log('percentage =', percentage);
 
         if ( percentage > 5 ) {
@@ -166,16 +169,33 @@ $('document').ready(function(){
             }
         }
 
-        util_drawGraphic("hasgtagHistory-sm", labels, data);
-        util_drawGraphic("hasgtagHistory-md", labels, data);
-        util_drawGraphic("hasgtagHistory-lg", labels, data);
+        var deviceSize = util_getBootstrapEnvironment();
+
+        switch (deviceSize) {
+            case 'xs':
+                $('#hasgtagHistory-xs').removeClass('hidden');
+                util_drawGraphic("hasgtagHistory-xs", labels, data);
+                break;
+            case 'sm':
+                $('#hasgtagHistory-sm').removeClass('hidden');
+                util_drawGraphic("hasgtagHistory-sm", labels, data);
+                break;
+            case 'md':
+                $('#hasgtagHistory-md').removeClass('hidden');
+                util_drawGraphic("hasgtagHistory-md", labels, data);
+                break;
+            case 'lg':
+                $('#hasgtagHistory-lg').removeClass('hidden');
+                util_drawGraphic("hasgtagHistory-lg", labels, data);
+                break;
+        }
     };
 
     var drawTweets = function(score, tweets) {
 
         var tweetsShowed = 1;
         var deviceSize = util_getBootstrapEnvironment();
-        console.log('deviceSize =',deviceSize);
+        //console.log('deviceSize =',deviceSize);
 
         for (var i = 0; i < tweets.length; i++) {
 
@@ -238,5 +258,6 @@ $('document').ready(function(){
         }
     };
 
-    getDataFromServer(1);
+    getDataFromServerRecursive(1);
+
 });

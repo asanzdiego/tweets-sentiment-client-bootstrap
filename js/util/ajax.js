@@ -1,3 +1,9 @@
+/************
+ *          *
+ *   AJAX   *
+ *          *
+ ************/
+
 // AJAX - Get
 var util_ajaxGet = function(url, data, callback) {
     console.log("GET to ", util_server_url+url);
@@ -7,9 +13,13 @@ var util_ajaxGet = function(url, data, callback) {
         url:  util_server_url+url,
         data: data
     })
-   .done(function(json) {
+   .done(function(json, textStatus, jqXHR) {
         console.log("json=", json);
         callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
     });
 };
 
@@ -22,9 +32,13 @@ var util_ajaxPost = function(url, data, callback) {
         url:  util_server_url+url,
         data: data
     })
-   .done(function(json) {
+   .done(function(json, textStatus, jqXHR) {
         console.log("json=", json);
         callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
     });
 };
 
@@ -37,9 +51,13 @@ var util_ajaxPut = function(url, data, callback) {
         url:  util_server_url+url,
         data: data
     })
-   .done(function(json) {
+   .done(function(json, textStatus, jqXHR) {
         console.log("json=", json);
         callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
     });
 };
 
@@ -52,8 +70,12 @@ var util_ajaxDelete = function(url, data, callback) {
         url:  util_server_url+url,
         data: data
     })
-   .done(function(json) {
+   .done(function(json, textStatus, jqXHR) {
         console.log("json=", json);
         callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
     });
 };

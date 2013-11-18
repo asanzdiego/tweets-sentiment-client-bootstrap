@@ -1,3 +1,10 @@
+/***************
+ *             *
+ *  BOOTSTRAP  *
+ *             *
+ ***************/
+
+// Bootstrap Environment
 var util_getBootstrapEnvironment = function() {
 
     var envs = ['xs', 'sm', 'md', 'lg'];

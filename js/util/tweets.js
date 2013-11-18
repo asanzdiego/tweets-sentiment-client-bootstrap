@@ -1,3 +1,9 @@
+/************
+ *          *
+ *  TWEETS  *
+ *          *
+ ************/
+
 var util_parseTweetToHtml = function(tweet) {
 
     tweet = tweet || {};

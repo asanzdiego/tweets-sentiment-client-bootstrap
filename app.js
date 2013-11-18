@@ -22,8 +22,6 @@ var execute = function() {
     new compressor.minify({
         type: 'no-compress',
         fileIn: [
-            'lib/moment/moment.js',
-            'lib/chart/Chart.js',
             'js/util/ajax.js',
             'js/util/bootstrap.js',
             'js/util/config.js',
@@ -34,7 +32,9 @@ var execute = function() {
             'js/util/score.js',
             'js/util/search.js',
             'js/util/share-link.js',
-            'js/util/tweets.js'
+            'js/util/tweets.js',
+            'lib/moment/moment.js',
+            'lib/chart/Chart.js',
         ],
         fileOut: 'js/util.js',
         tempPath: 'tmp',

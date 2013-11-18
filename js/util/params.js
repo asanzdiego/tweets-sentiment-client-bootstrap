@@ -1,3 +1,9 @@
+/************
+ *          *
+ *  PARAMS  *
+ *          *
+ ************/
+
 // URL Params
 var util_urlParams = {};
 (function () {

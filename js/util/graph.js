@@ -1,3 +1,9 @@
+/************
+ *          *
+ * GRAPHICS *
+ *          *
+ ************/
+
 var util_drawGraphic = function(canvasElement, labels, data) {
 
     var dataMock    = [];
