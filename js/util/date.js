@@ -1,3 +1,9 @@
+/***********
+ *         *
+ *  DATES  *
+ *         *
+ ***********/
+
 var util__dateToString = function(date, dateFormat) {
     if(!date) {
         return "--";

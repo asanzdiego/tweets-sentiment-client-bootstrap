@@ -1,3 +1,451 @@
+/************
+ *          *
+ *   AJAX   *
+ *          *
+ ************/
+
+// AJAX - Get
+var util_ajaxGet = function(url, data, callback) {
+    console.log("GET to ", util_server_url+url);
+    console.log("data=", data);
+    $.ajax({
+        type: "GET",
+        url:  util_server_url+url,
+        data: data
+    })
+   .done(function(json, textStatus, jqXHR) {
+        console.log("json=", json);
+        callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
+    });
+};
+
+// AJAX - Post
+var util_ajaxPost = function(url, data, callback) {
+    console.log("POST to ", util_server_url+url);
+    console.log("data=", data);
+    $.ajax({
+        type: "POST",
+        url:  util_server_url+url,
+        data: data
+    })
+   .done(function(json, textStatus, jqXHR) {
+        console.log("json=", json);
+        callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
+    });
+};
+
+// AJAX - Put
+var util_ajaxPut = function(url, data, callback) {
+    console.log("PUT to ", util_server_url+url);
+    console.log("data=", data);
+    $.ajax({
+        type: "PUT",
+        url:  util_server_url+url,
+        data: data
+    })
+   .done(function(json, textStatus, jqXHR) {
+        console.log("json=", json);
+        callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
+    });
+};
+
+// AJAX - Delete
+var util_ajaxDelete = function(url, data, callback) {
+    console.log("DELETE to ", util_server_url+url);
+    console.log("data=", data);
+    $.ajax({
+        type: "PUT",
+        url:  util_server_url+url,
+        data: data
+    })
+   .done(function(json, textStatus, jqXHR) {
+        console.log("json=", json);
+        callback(json);
+    })
+    .fail(function(jqXHR, textStatus, error) {
+        console.log("error=", error);
+        callback(error);
+    });
+};
+
+/***************
+ *             *
+ *  BOOTSTRAP  *
+ *             *
+ ***************/
+
+// Bootstrap Environment
+var util_getBootstrapEnvironment = function() {
+
+    var envs = ['xs', 'sm', 'md', 'lg'];
+
+    $el = $('<div>');
+    $el.appendTo($('body'));
+
+    for (var i = envs.length - 1; i >= 0; i--) {
+
+        var env = envs[i];
+
+        $el.addClass('hidden-'+env);
+        if ($el.is(':hidden')) {
+            $el.remove();
+            return env
+        }
+    };
+}
+
+/************
+ *          *
+ *  CONFIG  *
+ *          *
+ ************/
+
+// Server URL
+var util_server_url = "http://localhost:5000";
+//var util_server_url = "http://tweetssentiment.herokuapp.com";
+
+// Date format
+var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
+
+// Date format mini
+var util_dateFormatMini = "YY.MM.DD-HH:mm";
+
+// Max data show in graphs
+var util_maxGraphData = 15;
+
+// Max number of request retries
+var util_numberRequestRetries = 25;
+
+// each request retries with get request
+var util_eachGetRequestRetrie = 5;
+
+// Milleseconds between request retries
+var util_millBetweenRequestRetries = 1000;
+
+/***********
+ *         *
+ *  DATES  *
+ *         *
+ ***********/
+
+var util__dateToString = function(date, dateFormat) {
+    if(!date) {
+        return "--";
+    } else {
+        return moment(date).format(dateFormat);
+    }
+};
+
+var util__stringToDate = function(string, dateFormat) {
+    if(!string) {
+        return "";
+    } else {
+        return moment(string, dateFormat);
+    }
+};
+
+var util_dateToString = function(date) {
+    return util__dateToString(date, util_dateFormat);
+};
+var util_stringToDate = function(string) {
+    return util__stringToDate(string, util_dateFormat);
+};
+
+var util_dateToStringMini = function(date) {
+    return util__dateToString(date, util_dateFormatMini);
+};
+var util_stringToDateMini = function(string) {
+    return util__stringToDate(string, util_dateFormatMini);
+};
+
+/************
+ *          *
+ * GRAPHICS *
+ *          *
+ ************/
+
+var util_drawGraphic = function(canvasElement, labels, data) {
+
+    var dataMock    = [];
+    var dataMockMin = [];
+    var dataMockMax = [];
+
+    for (var i = 0; i < data.length; i++) {
+
+        dataMock.push(0);
+        dataMockMin.push(-100);
+        dataMockMax.push(100);
+    }
+
+    var lineChartData = {
+        labels : labels,
+        datasets : [
+            {
+                fillColor        : "rgba(103,230,103,0.1)",
+                strokeColor      : "33FF33",
+                pointColor       : "33FF33",
+                pointStrokeColor : "#fff",
+                data             : dataMockMax
+            },
+            {
+                fillColor        : "rgba(255,115,115,0.5)",
+                strokeColor      : "FF3333",
+                pointColor       : "FF3333",
+                pointStrokeColor : "#fff",
+                data             : dataMock
+            },
+            {
+                fillColor        : "rgba(255,115,115,0.1)",
+                strokeColor      : "FF3333",
+                pointColor       : "FF3333",
+                pointStrokeColor : "#fff",
+                data             : dataMockMin
+            },
+            {
+                fillColor        : "rgba(103,230,103,0.5)",
+                strokeColor      : "33FF33",
+                pointColor       : "33FF33",
+                pointStrokeColor : "#fff",
+                data             : data
+            }
+        ]
+    }
+
+    var options = {
+        pointDot : false
+    };
+
+    var myLine = new Chart(document.getElementById(canvasElement)
+        .getContext("2d")).Line(lineChartData, options);
+
+};
+
+/**********
+ *        *
+ *  MISC  *
+ *        *
+ **********/
+
+// String startsWith
+if (typeof String.prototype.startsWith != 'function') {
+  String.prototype.startsWith = function (str){
+    return this.indexOf(str) == 0;
+  };
+}
+
+// Random
+var util_random = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/************
+ *          *
+ *  PARAMS  *
+ *          *
+ ************/
+
+// URL Params
+var util_urlParams = {};
+(function () {
+    var match,
+        pl     = /\+/g,
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) {
+            return decodeURIComponent(s.replace(pl, " "));
+        },
+        query  = window.location.search.substring(1);
+
+    while (match = search.exec(query)) {
+       util_urlParams[decode(match[1])] = decode(match[2]);
+    }
+})();
+
+/***********
+ *         *
+ *  SCORE  *
+ *         *
+ ***********/
+
+// score image and color
+var util_scoreImageAndColor  = function(score, scoreTag) {
+
+    var scoreIcon     = 'glyphicon glyphicon-exclamation-sign';
+    var scoreColor    = '999999';
+    var scoreText     = 'not analyzed';
+    var scoreStars    = '- - - - -';
+    var scoreClass    = 'default';
+
+    switch (scoreTag) {
+        case 'P+':
+            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
+            scoreColor    = '468847';
+            scoreText     = 'very positive';
+            scoreStars    = '★★★★★';
+            scoreClass    = 'success';
+            break;
+        case 'P':
+            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
+            scoreColor    = '8fc38f';
+            scoreText     = 'positive';
+            scoreStars    = '★★★★☆';
+            scoreClass    = 'primary';
+            break;
+        case 'NEU':
+            scoreIcon     = 'glyphicon glyphicon-hand-right';
+            scoreColor    = 'c09853';
+            scoreText     = 'neutral';
+            scoreStars    = '★★★☆☆';
+            scoreClass    = 'warning';
+            break;
+        case 'N':
+            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
+            scoreColor    = 'dc9492';
+            scoreText     = 'negative';
+            scoreStars    = '★★☆☆☆';
+            scoreClass    = 'info';
+            break;
+        case 'N-':
+            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
+            scoreColor    = 'b94a48';
+            scoreText     = 'very negative';
+            scoreStars    = '★☆☆☆☆';
+            scoreClass    = 'danger';
+            break;
+    }
+
+    var score = {
+        scoreIcon     : scoreIcon,
+        scoreColor    : scoreColor,
+        scoreText     : scoreText,
+        scoreStars    : scoreStars,
+        scoreClass    : scoreClass
+    };
+
+    //console.log('score =',score);
+
+    return score;
+};
+
+/************
+ *          *
+ *  SEARCH  *
+ *          *
+ ************/
+
+
+// Searh
+$('document').ready(function(){
+    $('input[type=search]').on('keyup', function() {
+        $('[data-action=search]').each(function() {
+            toSearch = $('input[type=search]').val().toLowerCase();
+            elementText = $(this).text().toLowerCase();
+            if (elementText.match(toSearch)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            };
+        });
+    });
+});
+
+/*****************
+ *               *
+ *  SHARE LINKS  *
+ *               *
+ *****************/
+
+// share link
+$('document').ready(function(){
+
+    var url         = 'http://tweetssentiment.com/';
+
+    var tweetText   = 'Tweets Sentiment helps you to know if '
+                    + 'the tweets feeling of a topic is positive or negative.';
+
+    var href        = 'http://twitter.com/share?'
+                    + 'text=' + encodeURIComponent(tweetText)
+                    + '&via=TweetsSentiment'
+                    + '&url=' + encodeURIComponent(url);
+
+
+    $('#share-link-navbar').attr('href', href);
+    $('#share-link-button').attr('href', href);
+
+});
+
+// create share link
+var util_getShareLink = function(score, hashtag) {
+
+    var url       = 'http://tweetssentiment.com/hashtag.html?'
+                  + 'q='+encodeURIComponent(hashtag.hashtagText);
+
+
+    var tweetText = '"'+hashtag.hashtagText+'" has a '+score.scoreText+
+                    ' tweets sentiment ('+score.scoreStars+') > '+url;
+
+    var href      = 'http://twitter.com/share?'
+                  + 'text=' + encodeURIComponent(tweetText)
+                  + '&via=TweetsSentiment';
+
+    return href;
+};
+
+
+
+/************
+ *          *
+ *  TWEETS  *
+ *          *
+ ************/
+
+var util_parseTweetToHtml = function(tweet) {
+
+    tweet = tweet || {};
+
+    if ( tweet.textHtml ) {
+
+        return tweet.textHtml;
+
+    } else {
+
+        return util_parseTweetTextToHtml(tweet.text);
+    }
+}
+
+var util_parseTweetTextToHtml = function(tweetText) {
+
+    tweetText = tweetText || '';
+
+    // replace urls
+    tweetText = tweetText.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
+  	  	return url.link(url);
+	  });
+
+    // replace usernames
+    tweetText = tweetText.replace(/[@]+[A-Za-z0-9-_]+/g, function(username) {
+		    return username.link("http://twitter.com/"+username.replace("@",""));
+	  });
+
+    // replace hashtags
+    tweetText = tweetText.replace(/[#]+[A-Za-z0-9-_]+/g, function(tag) {
+    		return tag.link("http://search.twitter.com/search?q="+tag.replace("#",""));
+		});
+
+    return tweetText;
+};
+
 // moment.js
 // version : 2.1.0
 // author : Tim Wood
@@ -3087,364 +3535,3 @@ window.Chart = function(context){
 }
 
 
-
-// AJAX - Get
-var util_ajaxGet = function(url, data, callback) {
-    console.log("GET to ", util_server_url+url);
-    console.log("data=", data);
-    $.ajax({
-        type: "GET",
-        url:  util_server_url+url,
-        data: data
-    })
-   .done(function(json) {
-        console.log("json=", json);
-        callback(json);
-    });
-};
-
-// AJAX - Post
-var util_ajaxPost = function(url, data, callback) {
-    console.log("POST to ", util_server_url+url);
-    console.log("data=", data);
-    $.ajax({
-        type: "POST",
-        url:  util_server_url+url,
-        data: data
-    })
-   .done(function(json) {
-        console.log("json=", json);
-        callback(json);
-    });
-};
-
-// AJAX - Put
-var util_ajaxPut = function(url, data, callback) {
-    console.log("PUT to ", util_server_url+url);
-    console.log("data=", data);
-    $.ajax({
-        type: "PUT",
-        url:  util_server_url+url,
-        data: data
-    })
-   .done(function(json) {
-        console.log("json=", json);
-        callback(json);
-    });
-};
-
-// AJAX - Delete
-var util_ajaxDelete = function(url, data, callback) {
-    console.log("DELETE to ", util_server_url+url);
-    console.log("data=", data);
-    $.ajax({
-        type: "PUT",
-        url:  util_server_url+url,
-        data: data
-    })
-   .done(function(json) {
-        console.log("json=", json);
-        callback(json);
-    });
-};
-
-var util_getBootstrapEnvironment = function() {
-
-    var envs = ['xs', 'sm', 'md', 'lg'];
-
-    $el = $('<div>');
-    $el.appendTo($('body'));
-
-    for (var i = envs.length - 1; i >= 0; i--) {
-
-        var env = envs[i];
-
-        $el.addClass('hidden-'+env);
-        if ($el.is(':hidden')) {
-            $el.remove();
-            return env
-        }
-    };
-}
-
-// Server URL
-//var util_server_url = "http://localhost:5000";
-var util_server_url = "http://tweetssentiment.herokuapp.com/";
-
-// Date format
-var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
-
-// Date format mini
-var util_dateFormatMini = "YYYY.MM.DD-HH:mm";
-
-// Max data show in graphs
-var util_maxGraphData = 15;
-
-// Max number of request retries
-var util_requestRetries = 16;
-
-// Milleseconds between request retries
-var util_millBetweenRequestRetries = 3000;
-
-var util__dateToString = function(date, dateFormat) {
-    if(!date) {
-        return "--";
-    } else {
-        return moment(date).format(dateFormat);
-    }
-};
-
-var util__stringToDate = function(string, dateFormat) {
-    if(!string) {
-        return "";
-    } else {
-        return moment(string, dateFormat);
-    }
-};
-
-var util_dateToString = function(date) {
-    return util__dateToString(date, util_dateFormat);
-};
-var util_stringToDate = function(string) {
-    return util__stringToDate(string, util_dateFormat);
-};
-
-var util_dateToStringMini = function(date) {
-    return util__dateToString(date, util_dateFormatMini);
-};
-var util_stringToDateMini = function(string) {
-    return util__stringToDate(string, util_dateFormatMini);
-};
-
-var util_drawGraphic = function(canvasElement, labels, data) {
-
-    var dataMock    = [];
-    var dataMockMin = [];
-    var dataMockMax = [];
-
-    for (var i = 0; i < data.length; i++) {
-
-        dataMock.push(0);
-        dataMockMin.push(-100);
-        dataMockMax.push(100);
-    }
-
-    var lineChartData = {
-        labels : labels,
-        datasets : [
-            {
-                fillColor        : "rgba(103,230,103,0.1)",
-                strokeColor      : "33FF33",
-                pointColor       : "33FF33",
-                pointStrokeColor : "#fff",
-                data             : dataMockMax
-            },
-            {
-                fillColor        : "rgba(255,115,115,0.5)",
-                strokeColor      : "FF3333",
-                pointColor       : "FF3333",
-                pointStrokeColor : "#fff",
-                data             : dataMock
-            },
-            {
-                fillColor        : "rgba(255,115,115,0.1)",
-                strokeColor      : "FF3333",
-                pointColor       : "FF3333",
-                pointStrokeColor : "#fff",
-                data             : dataMockMin
-            },
-            {
-                fillColor        : "rgba(103,230,103,0.5)",
-                strokeColor      : "33FF33",
-                pointColor       : "33FF33",
-                pointStrokeColor : "#fff",
-                data             : data
-            }
-        ]
-    }
-
-    var options = {
-        pointDot : false
-    };
-
-    var myLine = new Chart(document.getElementById(canvasElement)
-        .getContext("2d")).Line(lineChartData, options);
-
-};
-
-// String startsWith
-if (typeof String.prototype.startsWith != 'function') {
-  String.prototype.startsWith = function (str){
-    return this.indexOf(str) == 0;
-  };
-}
-
-// Random
-var util_random = function(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// URL Params
-var util_urlParams = {};
-(function () {
-    var match,
-        pl     = /\+/g,
-        search = /([^&=]+)=?([^&]*)/g,
-        decode = function (s) {
-            return decodeURIComponent(s.replace(pl, " "));
-        },
-        query  = window.location.search.substring(1);
-
-    while (match = search.exec(query)) {
-       util_urlParams[decode(match[1])] = decode(match[2]);
-    }
-})();
-
-// score image and color
-var util_scoreImageAndColor  = function(score, scoreTag) {
-
-    var scoreIcon     = 'glyphicon glyphicon-exclamation-sign';
-    var scoreColor    = '999999';
-    var scoreText     = 'not analyzed';
-    var scoreStars    = '- - - - -';
-    var scoreClass    = 'default';
-
-    switch (scoreTag) {
-        case 'P+':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
-            scoreColor    = '468847';
-            scoreText     = 'very positive';
-            scoreStars    = '★★★★★';
-            scoreClass    = 'success';
-            break;
-        case 'P':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
-            scoreColor    = '8fc38f';
-            scoreText     = 'positive';
-            scoreStars    = '★★★★☆';
-            scoreClass    = 'primary';
-            break;
-        case 'NEU':
-            scoreIcon     = 'glyphicon glyphicon-hand-right';
-            scoreColor    = 'c09853';
-            scoreText     = 'neutral';
-            scoreStars    = '★★★☆☆';
-            scoreClass    = 'warning';
-            break;
-        case 'N':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
-            scoreColor    = 'dc9492';
-            scoreText     = 'negative';
-            scoreStars    = '★★☆☆☆';
-            scoreClass    = 'info';
-            break;
-        case 'N-':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
-            scoreColor    = 'b94a48';
-            scoreText     = 'very negative';
-            scoreStars    = '★☆☆☆☆';
-            scoreClass    = 'danger';
-            break;
-    }
-
-    var score = {
-        scoreIcon     : scoreIcon,
-        scoreColor    : scoreColor,
-        scoreText     : scoreText,
-        scoreStars    : scoreStars,
-        scoreClass    : scoreClass
-    };
-
-    //console.log('score =',score);
-
-    return score;
-};
-
-// Searh
-$('document').ready(function(){
-    $('input[type=search]').on('keyup', function() {
-        $('[data-action=search]').each(function() {
-            toSearch = $('input[type=search]').val().toLowerCase();
-            elementText = $(this).text().toLowerCase();
-            if (elementText.match(toSearch)) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            };
-        });
-    });
-});
-
-// share link
-$('document').ready(function(){
-
-    var url         = 'http://tweetssentiment.com/';
-
-    var tweetText   = 'Tweets Sentiment helps you to know if '
-                    + 'the tweets feeling of a topic is positive or negative.';
-
-    var href        = 'http://twitter.com/share?'
-                    + 'text=' + encodeURIComponent(tweetText)
-                    + '&via=TweetsSentiment'
-                    + '&url=' + encodeURIComponent(url);
-
-
-    $('#share-link-navbar').attr('href', href);
-    $('#share-link-button').attr('href', href);
-
-});
-
-// create share link
-var util_getShareLink = function(score, hashtag) {
-
-    var url       = 'http://tweetssentiment.com/hashtag.html?'
-                  + 'q='+encodeURIComponent(hashtag.hashtagText);
-
-
-    var tweetText = '"'+hashtag.hashtagText+'" has a '+score.scoreText+
-                    ' tweets sentiment ('+score.scoreStars+') > '+url;
-
-    var href      = 'http://twitter.com/share?'
-                  + 'text=' + encodeURIComponent(tweetText)
-                  + '&via=TweetsSentiment';
-
-    return href;
-};
-
-
-
-var util_parseTweetToHtml = function(tweet) {
-
-    tweet = tweet || {};
-
-    if ( tweet.textHtml ) {
-
-        return tweet.textHtml;
-
-    } else {
-
-        return util_parseTweetTextToHtml(tweet.text);
-    }
-}
-
-var util_parseTweetTextToHtml = function(tweetText) {
-
-    tweetText = tweetText || '';
-
-    // replace urls
-    tweetText = tweetText.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&~\?\/.=]+/g, function(url) {
-  	  	return url.link(url);
-	  });
-
-    // replace usernames
-    tweetText = tweetText.replace(/[@]+[A-Za-z0-9-_]+/g, function(username) {
-		    return username.link("http://twitter.com/"+username.replace("@",""));
-	  });
-
-    // replace hashtags
-    tweetText = tweetText.replace(/[#]+[A-Za-z0-9-_]+/g, function(tag) {
-    		return tag.link("http://search.twitter.com/search?q="+tag.replace("#",""));
-		});
-
-    return tweetText;
-};

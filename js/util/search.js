@@ -1,3 +1,10 @@
+/************
+ *          *
+ *  SEARCH  *
+ *          *
+ ************/
+
+
 // Searh
 $('document').ready(function(){
     $('input[type=search]').on('keyup', function() {

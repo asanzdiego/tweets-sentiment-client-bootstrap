@@ -1,3 +1,9 @@
+/*****************
+ *               *
+ *  SHARE LINKS  *
+ *               *
+ *****************/
+
 // share link
 $('document').ready(function(){
 

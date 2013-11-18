@@ -1,3 +1,9 @@
+/***********
+ *         *
+ *  SCORE  *
+ *         *
+ ***********/
+
 // score image and color
 var util_scoreImageAndColor  = function(score, scoreTag) {
 

@@ -7,6 +7,7 @@ $('document').ready(function(){
 
         if(!json || json.error) {
 
+            $('#internal-server-error').removeClass('hidden');
             console.log('ERROR retrieving hashtags', json.error);
 
         } else {
