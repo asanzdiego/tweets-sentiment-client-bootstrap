@@ -42,12 +42,15 @@ var util_scoreImageAndColor  = function(score, scoreTag) {
             scoreStars    = '★★☆☆☆';
             scoreClass    = 'info';
             break;
-        case 'N-':
+        case 'N+':
             scoreIcon     = 'glyphicon glyphicon-thumbs-down';
             scoreColor    = 'b94a48';
             scoreText     = 'very negative';
             scoreStars    = '★☆☆☆☆';
             scoreClass    = 'danger';
+            break;
+        case 'NO_SENTIMENT':
+            scoreText     = 'without sentiment';
             break;
     }
 

@@ -97,11 +97,15 @@
         <br/>
 
         <div class="hidden" id="internal-server-error">
-          <h1>500</h1>
-          <h2>Internal Server Error.</h2>
+          <h5 class="alert alert-danger centered">
+            <strong>Oops!</strong>
+            Something was wrong, but a team of <strong>500</strong> highly
+            trained monkeys has been dispatched to deal with this situation.
+            <strong>Try again in a few minutes.</strong>
+          </h5>
         </div>
 
-        <div id="progessbar">
+        <div id="progessbar" class="hidden">
           <div class="progress progress-bar-primary">
             <div id="progessbar-percentage"
               class="progress-bar progress-bar-primary" role="progressbar"
@@ -115,10 +119,36 @@
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden" id="hashtag"></div>
           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden centered" id="graphic">
-            <!--canvas id="hasgtagHistory-xs" class="visible-xs hidden centered" width="350" height="225"></canvas-->
-            <canvas id="hasgtagHistory-sm" class="visible-sm hidden centered" width="350" height="225"></canvas>
-            <canvas id="hasgtagHistory-md" class="visible-md hidden centered" width="425" height="225"></canvas>
-            <canvas id="hasgtagHistory-lg" class="visible-lg hidden centered" width="525" height="225"></canvas>
+            <canvas id="hasgtagHistory-sm" class="visible-sm centered" width="350" height="225"></canvas>
+            <canvas id="hasgtagHistory-md" class="visible-md centered" width="425" height="225"></canvas>
+            <canvas id="hasgtagHistory-lg" class="visible-lg centered" width="525" height="225"></canvas>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden centered" id="not-analized">
+            <br />
+            <h5 class="alert alert-danger centered">
+              <strong>Oops!</strong>
+              We are really worry, but a team of <strong>204</strong> highly
+              trained monkeys were unable to process the tweets.
+              <strong>Try again in a few minutes.</strong>
+            </h5>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden centered" id="no-sentiment">
+            <br />
+            <h5 class="alert alert-danger centered">
+              <strong>Oops!</strong>
+              We are really worry, but a team of <strong>204</strong> highly
+              trained monkeys were unable to extract the sentiment of the tweets.
+              <strong>Try again in a few minutes.</strong>
+            </h5>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 hidden centered" id="not-history">
+            <br />
+            <h5 class="alert alert-danger centered">
+              <strong>Oops!</strong>
+              We are really worry, but a team of <strong>204</strong> highly
+              trained monkeys were unable to draw the history graphic.
+              <strong>Try again in a few minutes.</strong>
+            </h5>
           </div>
         </div>
 

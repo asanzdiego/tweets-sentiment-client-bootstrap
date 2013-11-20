@@ -40,4 +40,10 @@ var util_getShareLink = function(score, hashtag) {
     return href;
 };
 
+// put share link to element
+var util_putShareLink = function(element, score, hashtag) {
+
+    $(element).attr('href', util_getShareLink(score, hashtag));
+};
+
 
