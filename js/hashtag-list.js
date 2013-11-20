@@ -43,7 +43,8 @@ $('document').ready(function(){
                   '<span class="icon share"></span> Share</a> '+
                 '<a href="'+statsUrl+'" '+
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                  '<span class="icon bar-chart"></span> Stats</a>'+
+                  //'<span class="icon bar-chart"></span> Stats</a>'+
+                  '<span class="icon eye-open"></span> View</a>'+
               '</p>';
 
             if ( score.scoreText === 'not analyzed') {
@@ -96,7 +97,7 @@ $('document').ready(function(){
 
         console.log('hashtagToSearch =', hashtagToSearch);
 
-        if (hashtagToSearch.length < 4 || hashtagToSearch.length > 60) {
+        if (hashtagToSearch.length < 3 || hashtagToSearch.length > 60) {
 
             $('#search-hastag-error').removeClass('hidden');
 

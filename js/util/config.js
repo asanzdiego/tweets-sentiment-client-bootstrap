@@ -4,10 +4,6 @@
  *          *
  ************/
 
-// Server URL
-var util_server_url = "http://localhost:5000";
-//var util_server_url = "http://tweetssentiment.herokuapp.com";
-
 // Date format
 var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
 
@@ -18,10 +14,10 @@ var util_dateFormatMini = "YY.MM.DD-HH:mm";
 var util_maxGraphData = 15;
 
 // Max number of request retries
-var util_numberRequestRetries = 25;
+var util_numberRequestRetries = 30;
 
 // each request retries with get request
-var util_eachGetRequestRetrie = 5;
+var util_eachGetRequestRetrie = 10;
 
 // Milleseconds between request retries
 var util_millBetweenRequestRetries = 1000;

@@ -112,10 +112,6 @@ var util_getBootstrapEnvironment = function() {
  *          *
  ************/
 
-// Server URL
-var util_server_url = "http://localhost:5000";
-//var util_server_url = "http://tweetssentiment.herokuapp.com";
-
 // Date format
 var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
 
@@ -126,10 +122,10 @@ var util_dateFormatMini = "YY.MM.DD-HH:mm";
 var util_maxGraphData = 15;
 
 // Max number of request retries
-var util_numberRequestRetries = 25;
+var util_numberRequestRetries = 30;
 
 // each request retries with get request
-var util_eachGetRequestRetrie = 5;
+var util_eachGetRequestRetrie = 10;
 
 // Milleseconds between request retries
 var util_millBetweenRequestRetries = 1000;
@@ -169,6 +165,16 @@ var util_dateToStringMini = function(date) {
 var util_stringToDateMini = function(string) {
     return util__stringToDate(string, util_dateFormatMini);
 };
+
+/*****************
+ *               *
+ *  ENVIRONMENT  *
+ *               *
+ *****************/
+
+// Server URL
+var util_server_url = "http://localhost:5000";
+//var util_server_url = "http://tweetssentiment.herokuapp.com";
 
 /************
  *          *
@@ -272,6 +278,25 @@ var util_urlParams = {};
     }
 })();
 
+var util_updateProgessBar = function(element, retries, maxRetries) {
+
+    $(element).removeClass('hidden');
+    $(element).show();
+
+    var percentage = Math.floor((retries-1)*100/maxRetries);
+    //console.log('percentage =', percentage);
+
+    $('#progessbar').html(
+      '<div class="progress progress-bar-primary">'+
+        '<div id="progessbar-percentage"'+
+          'class="progress-bar progress-bar-primary" role="progressbar"'+
+          'aria-valuenow="'+percentage+'" style="width: '+percentage+'%"'+
+          'aria-valuemin="0" aria-valuemax="100">'+
+          '<span id="progessbar-text">'+percentage+'% Complete</span>'+
+        '</div>'+
+      '</div>');
+}
+
 /***********
  *         *
  *  SCORE  *
@@ -316,12 +341,15 @@ var util_scoreImageAndColor  = function(score, scoreTag) {
             scoreStars    = '★★☆☆☆';
             scoreClass    = 'info';
             break;
-        case 'N-':
+        case 'N+':
             scoreIcon     = 'glyphicon glyphicon-thumbs-down';
             scoreColor    = 'b94a48';
             scoreText     = 'very negative';
             scoreStars    = '★☆☆☆☆';
             scoreClass    = 'danger';
+            break;
+        case 'NO_SENTIMENT':
+            scoreText     = 'without sentiment';
             break;
     }
 
@@ -400,6 +428,12 @@ var util_getShareLink = function(score, hashtag) {
                   + '&via=TweetsSentiment';
 
     return href;
+};
+
+// put share link to element
+var util_putShareLink = function(element, score, hashtag) {
+
+    $(element).attr('href', util_getShareLink(score, hashtag));
 };
 
 
