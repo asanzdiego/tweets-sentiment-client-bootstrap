@@ -20,7 +20,7 @@ echo "***************"
 
 git diff | grep +++
 
-read -p "You want to continue? [y|n]: " OPTION
+read -p "You want to continue? [y|*N*]: " OPTION
 
 if [ "$OPTION" == "y" ]; then
 
@@ -32,6 +32,6 @@ if [ "$OPTION" == "y" ]; then
     git add . && \
     git commit -m "$MESSAGE" && \
     git push
-
 fi
 
+cd -
