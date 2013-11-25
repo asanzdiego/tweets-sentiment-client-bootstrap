@@ -33,5 +33,3 @@ if [ "$OPTION" == "y" ]; then
     git commit -m "$MESSAGE" && \
     git push
 fi
-
-cd -
