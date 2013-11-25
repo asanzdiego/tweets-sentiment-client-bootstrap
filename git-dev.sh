@@ -18,9 +18,6 @@ echo "***************"
 echo "* DEVELOPMENT *"
 echo "***************"
 
-FROM='/home/adolfo/hackathon/tweets-sentiment/src/v3.0-bootstrap/tweets-sentiment-client-bootstrap'
-
-cd $TO && \
 git diff | grep +++
 
 read -p "You want to continue? [y|*N*]: " OPTION
