@@ -166,15 +166,17 @@ var util_stringToDateMini = function(string) {
     return util__stringToDate(string, util_dateFormatMini);
 };
 
-/*****************
- *               *
- *  ENVIRONMENT  *
- *               *
- *****************/
+
+/*****************************
+ * ENVIRONMENT = DEVELOPMENT *
+ *****************************/
+
+// version
+var util_version = "jue nov 28 14:14:53 CET 2013"
 
 // Server URL
 var util_server_url = "http://localhost:5000";
-//var util_server_url = "http://tweetssentiment.herokuapp.com";
+
 
 /************
  *          *
