@@ -55,6 +55,7 @@ var util_scoreImageAndColor  = function(score, scoreTag) {
     }
 
     var score = {
+        scoreTag      : scoreTag,
         scoreIcon     : scoreIcon,
         scoreColor    : scoreColor,
         scoreText     : scoreText,

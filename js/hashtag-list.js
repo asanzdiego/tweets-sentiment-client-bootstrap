@@ -47,7 +47,7 @@ $('document').ready(function(){
                   '<span class="icon eye-open"></span> View</a>'+
               '</p>';
 
-            if ( score.scoreText === 'not analyzed') {
+            if ( score.scoreTag === 'NO_SENTIMENT' || score.scoreTag === 'NOT_ANALYZED') {
 
               buttons = ''+
                 '<p>'+
@@ -103,7 +103,7 @@ $('document').ready(function(){
 
         } else {
 
-            window.location.replace('hashtag.html?q='+hashtagToSearch);
+            window.location.replace('hashtag.html?q='+encodeURIComponent(hashtagToSearch));
         }
     });
 
