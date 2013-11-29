@@ -43,11 +43,13 @@ $('document').ready(function(){
                   '<span class="icon share"></span> Share</a> '+
                 '<a href="'+statsUrl+'" '+
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                  //'<span class="icon bar-chart"></span> Stats</a>'+
-                  '<span class="icon eye-open"></span> View</a>'+
+                  '<span class="icon bar-chart"></span> Stats</a>'+
+                  //'<span class="icon eye-open"></span> View</a>'+
+                  //'<span class="icon refresh"></span> Reload</a>'+
               '</p>';
 
-            if ( score.scoreTag === 'NO_SENTIMENT' || score.scoreTag === 'NOT_ANALYZED') {
+            if (     hashtag.lastScoreTag === 'NOT_ANALYZED'
+                  || hashtag.lastScoreTag === 'NO_SENTIMENT' ) {
 
               buttons = ''+
               '<p>'+
@@ -55,6 +57,7 @@ $('document').ready(function(){
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
                   //'<span class="icon bar-chart"></span> Stats</a>'+
                   '<span class="icon eye-open"></span> View</a>'+
+                  //'<span class="icon refresh"></span> Reload</a>'+
               '</p>';
             }
 
