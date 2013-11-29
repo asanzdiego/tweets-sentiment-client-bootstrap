@@ -50,11 +50,12 @@ $('document').ready(function(){
             if ( score.scoreTag === 'NO_SENTIMENT' || score.scoreTag === 'NOT_ANALYZED') {
 
               buttons = ''+
-                '<p>'+
-                  '<a href="'+statsUrl+'" '+
-                    'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                    '<span class="icon refresh"></span> Reload</a>'+
-                '</p>';
+              '<p>'+
+                '<a href="'+statsUrl+'" '+
+                  'class="btn btn-sm btn-'+score.scoreClass+'">'+
+                  //'<span class="icon bar-chart"></span> Stats</a>'+
+                  '<span class="icon eye-open"></span> View</a>'+
+              '</p>';
             }
 
             var html = ''+

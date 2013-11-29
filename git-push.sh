@@ -23,7 +23,6 @@ echo "**************************************************"
 writeEnvironment > js/util/environment.js && \
 more js/util/environment.js && \
 node app.js && \
-git add . && \
 git diff | grep +++
 
 read -p "You want to continue? [y|*N*]: " OPTION
@@ -32,6 +31,7 @@ if [ "$OPTION" == "y" ]; then
 
     read -p "Write the commit message: " MESSAGE
 
+    git add . && \
     git commit -m "$MESSAGE" && \
     git push
 fi
