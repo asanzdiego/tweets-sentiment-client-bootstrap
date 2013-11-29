@@ -47,14 +47,15 @@ $('document').ready(function(){
                   '<span class="icon eye-open"></span> View</a>'+
               '</p>';
 
-            if ( score.scoreText === 'not analyzed') {
+            if ( score.scoreTag === 'NO_SENTIMENT' || score.scoreTag === 'NOT_ANALYZED') {
 
               buttons = ''+
-                '<p>'+
-                  '<a href="'+statsUrl+'" '+
-                    'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                    '<span class="icon refresh"></span> Reload</a>'+
-                '</p>';
+              '<p>'+
+                '<a href="'+statsUrl+'" '+
+                  'class="btn btn-sm btn-'+score.scoreClass+'">'+
+                  //'<span class="icon bar-chart"></span> Stats</a>'+
+                  '<span class="icon eye-open"></span> View</a>'+
+              '</p>';
             }
 
             var html = ''+
@@ -103,7 +104,7 @@ $('document').ready(function(){
 
         } else {
 
-            window.location.replace('hashtag.html?q='+hashtagToSearch);
+            window.location.replace('hashtag.html?q='+encodeURIComponent(hashtagToSearch));
         }
     });
 

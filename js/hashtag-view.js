@@ -1,6 +1,8 @@
 $('document').ready(function(){
 
     var hashtagText = util_urlParams['q'];
+    console.log('hashtagText =', hashtagText);
+
     var data = {};
 
     var getDataFromServerRecursive = function(retries){
@@ -22,7 +24,7 @@ $('document').ready(function(){
 
     var getDataFromServer = function(retries){
 
-        util_ajaxGet('/search/'+hashtagText, data, function(json) {
+        util_ajaxGet('/search/'+encodeURIComponent(hashtagText), data, function(json) {
 
             if(!json || json.error) {
 
@@ -138,7 +140,7 @@ $('document').ready(function(){
     var drawHashtagHistory = function(hashtag) {
 
         // get data from server
-        util_ajaxGet('/histories/'+hashtag._id, data, function(json) {
+        util_ajaxGet('/histories/'+encodeURIComponent(hashtag._id), data, function(json) {
 
             if(!json || json.error) {
 
@@ -220,14 +222,14 @@ $('document').ready(function(){
                 var hrefShareTweet = 'http://twitter.com/share?'+
                     'text=' + encodeURIComponent('RT @'+tweet.nick+': '+tweet.text);
 
-                var hrefViewTweet = 'http://twitter.com/'+tweet.nick+
-                    '/status/'+tweet.id;
+                var hrefViewTweet = 'http://twitter.com/'+encodeURIComponent(tweet.nick)+
+                    '/status/'+encodeURIComponent(tweet.id);
 
                 $('#tweets').append(
                   '<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">'+
                     '<div class="panel panel-'+score.scoreClass+'">'+
                       '<div class="panel-body tweet-'+score.scoreClass+'"">'+
-                        '<a href="http://twitter.com/'+tweet.nick+'" target="_blank">'+
+                        '<a href="http://twitter.com/'+encodeURIComponent(tweet.nick)+'" target="_blank">'+
                           '<img src="'+tweet.avatar+'" '+
                             'class="pull-left img-thumbnail"" '+
                             'style="border: 1px solid #'+score.scoreColor+'; '+
