@@ -28,6 +28,7 @@ var execute = function() {
             'js/util/date.js',
             'js/util/environment.js',
             'js/util/graph.js',
+            'js/util/hashtag.js',
             'js/util/misc.js',
             'js/util/params.js',
             'js/util/progressbar.js',

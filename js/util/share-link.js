@@ -27,10 +27,10 @@ $('document').ready(function(){
 var util_getShareLink = function(score, hashtag) {
 
     var url       = 'http://tweetssentiment.com/hashtag.html?'
-                  + 'q='+encodeURIComponent(hashtag.hashtagText);
+                  + 'q='+encodeURIComponent(util_hashtagTitle(hashtag));
 
 
-    var tweetText = '"'+hashtag.hashtagText+'" has a '+score.scoreText+
+    var tweetText = '"'+util_hashtagTitle(hashtag)+'" has a '+score.scoreText+
                     ' tweets sentiment ('+score.scoreStars+') > '+url;
 
     var href      = 'http://twitter.com/share?'

@@ -113,10 +113,10 @@ var util_getBootstrapEnvironment = function() {
  ************/
 
 // Date format
-var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
+var util_dateFormat = "YYYY/MM/DD HH:mm:ss";
 
 // Date format mini
-var util_dateFormatMini = "YY.MM.DD-HH:mm";
+var util_dateFormatMini = "YYYY/MM/DD - HH:mm";
 
 // Max data show in graphs
 var util_maxGraphData = 15;
@@ -172,7 +172,7 @@ var util_stringToDateMini = function(string) {
  ****************************/
 
 // version
-var util_version = "vie nov 29 15:12:55 CET 2013"
+var util_version = "mié dic  4 23:30:29 CET 2013"
 
 // Server URL
 var util_server_url = "http://tweetssentiment.herokuapp.com";
@@ -238,6 +238,15 @@ var util_drawGraphic = function(canvasElement, labels, data) {
     var myLine = new Chart(document.getElementById(canvasElement)
         .getContext("2d")).Line(lineChartData, options);
 
+};
+
+var util_hashtagTitle = function(hashtag) {
+
+    if (hashtag.lastTitle) {
+        return hashtag.lastTitle;
+    } else {
+        return hashtag.hashtagText
+    };
 };
 
 /**********
@@ -420,10 +429,10 @@ $('document').ready(function(){
 var util_getShareLink = function(score, hashtag) {
 
     var url       = 'http://tweetssentiment.com/hashtag.html?'
-                  + 'q='+encodeURIComponent(hashtag.hashtagText);
+                  + 'q='+encodeURIComponent(util_hashtagTitle(hashtag));
 
 
-    var tweetText = '"'+hashtag.hashtagText+'" has a '+score.scoreText+
+    var tweetText = '"'+util_hashtagTitle(hashtag)+'" has a '+score.scoreText+
                     ' tweets sentiment ('+score.scoreStars+') > '+url;
 
     var href      = 'http://twitter.com/share?'

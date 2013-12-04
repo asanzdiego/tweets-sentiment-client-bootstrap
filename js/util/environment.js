@@ -4,7 +4,7 @@
  ****************************/
 
 // version
-var util_version = "vie nov 29 15:12:55 CET 2013"
+var util_version = "mié dic  4 23:30:29 CET 2013"
 
 // Server URL
 var util_server_url = "http://tweetssentiment.herokuapp.com";
