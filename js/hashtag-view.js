@@ -111,7 +111,7 @@ $('document').ready(function(){
 
           button = ''+
             '<p>'+
-              '<a href="hashtag.html?q='+encodeURIComponent(hashtag.hashtagText)+'" '+
+              '<a href="hashtag.html?q='+encodeURIComponent(util_hashtagTitle(hashtag))+'" '+
                 'class="btn btn-sm btn-'+score.scoreClass+'">'+
                 '<span class="icon refresh"></span> Reload</a>'+
             '</p>';
@@ -121,7 +121,7 @@ $('document').ready(function(){
             '<div class="panel panel-'+score.scoreClass+'">'+
               '<div class="panel-heading">'+
                 '<h3 class="panel-title bolded">'
-                  +hashtag.hashtagText+'</h3>'+
+                  +util_hashtagTitle(hashtag)+'</h3>'+
               '</div>'+
               '<div class="panel-body">'+
                 '<p style="color:#'+score.scoreColor+'">'+
@@ -168,18 +168,21 @@ $('document').ready(function(){
 
         for (var i = 0; i < hashtagHistories.length; i++) {
 
-            if (   i === 0
-                || i === (hashtagHistories.length-1)
-                || 0 === (i%filter)
-                || hashtagHistories[i].scoreTag !== 'NO_SENTIMENT' ) {
+            if (     hashtag.lastScoreTag !== 'NOT_ANALYZED'
+                  && hashtag.lastScoreTag !== 'NO_SENTIMENT' ) {
 
-                var date = util_dateToStringMini(hashtagHistories[i].date);
-                labels.push(' '+date+' ');
-                //console.log(date);
+                if (     i === 0
+                      || i === (hashtagHistories.length-1)
+                      || 0 === (i%filter) ) {
 
-                var score = hashtagHistories[i].score * 100;
-                data.push(score);
-                //console.log(score);
+                    var date = util_dateToStringMini(hashtagHistories[i].date);
+                    labels.push(' '+date+' ');
+                    //console.log(date);
+
+                    var score = hashtagHistories[i].score * 100;
+                    data.push(score);
+                    //console.log(score);
+                }
             }
         }
 

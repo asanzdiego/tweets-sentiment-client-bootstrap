@@ -5,10 +5,10 @@
  ************/
 
 // Date format
-var util_dateFormat = "DD/MM/YYYY HH:mm:ss";
+var util_dateFormat = "YYYY/MM/DD HH:mm:ss";
 
 // Date format mini
-var util_dateFormatMini = "YY.MM.DD-HH:mm";
+var util_dateFormatMini = "YYYY/MM/DD - HH:mm";
 
 // Max data show in graphs
 var util_maxGraphData = 15;

@@ -22,7 +22,6 @@ $('document').ready(function(){
     // draw data
     var drawHashtags = function(hashtags) {
 
-
         var tweetsShowed = 1;
         var deviceSize = util_getBootstrapEnvironment();
         console.log('deviceSize =',deviceSize);
@@ -33,7 +32,7 @@ $('document').ready(function(){
 
             var score = util_scoreImageAndColor(hashtag.lastScore, hashtag.lastScoreTag);
 
-            var statsUrl = 'hashtag.html?q='+encodeURIComponent(hashtag.hashtagText);
+            var statsUrl = 'hashtag.html?q='+encodeURIComponent(util_hashtagTitle(hashtag));
 
             var buttons = ''+
               '<p>'+
@@ -67,7 +66,7 @@ $('document').ready(function(){
                 '<div class="panel panel-'+score.scoreClass+' centered">'+
                   '<div class="panel-heading">'+
                     '<h3 class="panel-title bolded">'
-                      +hashtag.hashtagText+'</h3>'+
+                      +util_hashtagTitle(hashtag)+'</h3>'+
                   '</div>'+
                   '<div class="panel-body">'+
                     '<p style="color:#'+score.scoreColor+'">'+
