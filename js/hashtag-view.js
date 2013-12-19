@@ -103,7 +103,7 @@ $('document').ready(function(){
             '<a href="'+util_getShareLink(score, hashtag)+'" '+
               'target="_blank" '+
               'class="btn btn-sm btn-'+score.scoreClass+'">'+
-              '<span class="icon share"></span> Share</a> '+
+              '<img src="./img/share-white.png" alt="Share"/> Share</a> '+
           '</p>';
 
         if (     hashtag.lastScoreTag === 'NOT_ANALYZED'
@@ -113,7 +113,7 @@ $('document').ready(function(){
             '<p>'+
               '<a href="hashtag.html?q='+encodeURIComponent(util_hashtagTitle(hashtag))+'" '+
                 'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                '<span class="icon refresh"></span> Reload</a>'+
+                '<img src="./img/reload.png" alt="Reload"/> Reload</a>'+
             '</p>';
         }
 
@@ -247,13 +247,13 @@ $('document').ready(function(){
                         '<p class="text-'+score.scoreClass+'">'+
                           util_parseTweetToHtml(tweet)+
                         '</p>'+
-                        '<p class="pull-right tweet-'+score.scoreClass+'">'+
-                          '<span class="icon share"> </span>'+
+                        '<p class="pull-right">'+
                           '<a href="'+hrefShareTweet+'" target="_blank">'+
-                            'share</a>&nbsp'+
-                          '<span class="icon eye-open"> </span>'+
+                            '<img src="./img/share-blue.png" alt="Share"'+
+                            'class="marged-right"/>share</a>&nbsp'+
                           '<a href="'+hrefViewTweet+'" target="_blank">'+
-                            'view</a>'+
+                            '<img src="./img/eye-blue.png" alt="Share"'+
+                            'class="marged-right"/>view</a>'+
                         '</p>'+
                       '</div>'+
                     '</div>'+
