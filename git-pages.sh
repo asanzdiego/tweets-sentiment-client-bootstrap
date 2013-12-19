@@ -20,7 +20,7 @@ echo "****************************************************"
 echo "* PUSH CHANGES TO GIT PAGES POINTING TO PRODUCTION *"
 echo "****************************************************"
 
-FROM='/home/adolfo/hackathon/tweets-sentiment/src/v3.0-bootstrap/tweets-sentiment-client-bootstrap'
+FROM='/home/adolfo/hackathon/tweets-sentiment/src/v4.0-languages/tweets-sentiment-client-bootstrap'
 FOLDERTO='/home/adolfo/Curro/github/gh-pages'
 TO='/home/adolfo/Curro/github/gh-pages/tweets-sentiment-client-bootstrap'
 

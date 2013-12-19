@@ -7,7 +7,7 @@
 // score image and color
 var util_scoreImageAndColor  = function(score, scoreTag) {
 
-    var scoreIcon     = 'glyphicon glyphicon-exclamation-sign';
+    var scoreIcon     = 'warning.png';
     var scoreColor    = '999999';
     var scoreText     = 'not analyzed';
     var scoreStars    = '- - - - -';
@@ -15,35 +15,35 @@ var util_scoreImageAndColor  = function(score, scoreTag) {
 
     switch (scoreTag) {
         case 'P+':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
+            scoreIcon     = 'very-positive.png';
             scoreColor    = '468847';
             scoreText     = 'very positive';
             scoreStars    = '★★★★★';
             scoreClass    = 'success';
             break;
         case 'P':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-up';
+            scoreIcon     = 'positive.png';
             scoreColor    = '8fc38f';
             scoreText     = 'positive';
             scoreStars    = '★★★★☆';
             scoreClass    = 'primary';
             break;
         case 'NEU':
-            scoreIcon     = 'glyphicon glyphicon-hand-right';
+            scoreIcon     = 'neutral.png';
             scoreColor    = 'c09853';
             scoreText     = 'neutral';
             scoreStars    = '★★★☆☆';
             scoreClass    = 'warning';
             break;
         case 'N':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
+            scoreIcon     = 'negative.png';
             scoreColor    = 'dc9492';
             scoreText     = 'negative';
             scoreStars    = '★★☆☆☆';
             scoreClass    = 'info';
             break;
         case 'N+':
-            scoreIcon     = 'glyphicon glyphicon-thumbs-down';
+            scoreIcon     = 'very-negative.png';
             scoreColor    = 'b94a48';
             scoreText     = 'very negative';
             scoreStars    = '★☆☆☆☆';

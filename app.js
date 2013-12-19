@@ -7,7 +7,6 @@ var execute = function() {
         type: 'sqwish',
         fileIn: [
             'css/tweetssentiment.css',
-            'lib/lungo/lungo.icon.css',
             'lib/bootstrap/css/bootstrap.css'
         ],
         fileOut: 'css/tweetssentiment-min.css',

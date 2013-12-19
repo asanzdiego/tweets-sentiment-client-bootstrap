@@ -1,3 +1,11 @@
+.marged-left {
+    margin-left: 5px;
+}
+
+.marged-right {
+    margin-right: 5px;
+}
+
 .bordered {
     border: 2px solid #999;
 }
@@ -60,3 +68,18 @@
     color: #b94a48 ;
 }
 
+.language {
+    cursor: pointer;
+}
+
+.language:hover {
+    text-decoration: none;
+}
+
+.language-no-selected {
+    color: #777;
+}
+
+.language-no-selected:hover {
+    color: #333;
+}

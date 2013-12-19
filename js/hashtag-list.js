@@ -1,6 +1,7 @@
 $('document').ready(function(){
 
     var data = {};
+    var language = 'auto';
 
     // get data from server
     util_ajaxGet('/hashtags', data, function(json) {
@@ -39,12 +40,10 @@ $('document').ready(function(){
                 '<a href="'+util_getShareLink(score, hashtag)+'" '+
                   'target="_blank" '+
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                  '<span class="icon share"></span> Share</a> '+
+                  '<img src="./img/share-white.png" alt="Share"/> Share</a> '+
                 '<a href="'+statsUrl+'" '+
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                  '<span class="icon bar-chart"></span> Stats</a>'+
-                  //'<span class="icon eye-open"></span> View</a>'+
-                  //'<span class="icon refresh"></span> Reload</a>'+
+                  '<img src="./img/statistics-white.png" alt="Statistics"/> Stats</a>'+
               '</p>';
 
             if (     hashtag.lastScoreTag === 'NOT_ANALYZED'
@@ -54,9 +53,7 @@ $('document').ready(function(){
               '<p>'+
                 '<a href="'+statsUrl+'" '+
                   'class="btn btn-sm btn-'+score.scoreClass+'">'+
-                  //'<span class="icon bar-chart"></span> Stats</a>'+
-                  '<span class="icon eye-open"></span> View</a>'+
-                  //'<span class="icon refresh"></span> Reload</a>'+
+                  '<img src="./img/eye.png" alt="View"/> View</a>'+
               '</p>';
             }
 
@@ -71,7 +68,8 @@ $('document').ready(function(){
                   '<div class="panel-body">'+
                     '<p style="color:#'+score.scoreColor+'">'+
                       score.scoreText+
-                      '&nbsp;<span class="'+score.scoreIcon+'"></span>'+
+                      '&nbsp;<img src="./img/'+score.scoreIcon
+                        +'" alt="'+score.scoreText+'"/>'+
                     '</p>'+
                     '<p style="color:#'+score.scoreColor+'">&nbsp;'+
                       score.scoreStars+'&nbsp;</p>'+
@@ -106,6 +104,7 @@ $('document').ready(function(){
 
         } else {
 
+            //alert("l="+language);
             window.location.replace('hashtag.html?q='+encodeURIComponent(hashtagToSearch));
         }
     });
@@ -114,4 +113,69 @@ $('document').ready(function(){
 
         $('#search-hastag-error').addClass('hidden');
     });
+
+    $('#language-auto').click(function() {
+
+        console.log('auto language selected');
+        language = 'auto';
+
+        resetLanguage();
+
+        $(this).removeClass('language-no-selected');
+        $('#img-language-auto').attr('src','./img/languages/auto-2.png');
+        $('#img-language-auto-xs').attr('src','./img/languages/auto-2.png');
+    });
+
+    $('#language-en').click(function() {
+
+        console.log('english language selected');
+        language = 'en';
+
+        resetLanguage();
+
+        $(this).removeClass('language-no-selected');
+        $('#img-language-en').attr('src','./img/languages/en-2.png');
+        $('#img-language-en-xs').attr('src','./img/languages/en-2.png');
+    });
+
+    $('#language-es').click(function() {
+
+        console.log('spanish language selected');
+        language = 'es';
+
+        resetLanguage();
+
+        $(this).removeClass('language-no-selected');
+        $('#img-language-es').attr('src','./img/languages/es-2.png');
+        $('#img-language-es-xs').attr('src','./img/languages/es-2.png');
+    });
+
+    $('#language-fr').click(function() {
+
+        console.log('language auto selected');
+        language = 'fr';
+
+        resetLanguage();
+
+        $(this).removeClass('language-no-selected');
+        $('#img-language-fr').attr('src','./img/languages/fr-2.png');
+        $('#img-language-fr-xs').attr('src','./img/languages/fr-2.png');
+    });
+
+    var resetLanguage = function() {
+
+        $('#language-auto').addClass('language-no-selected');
+        $('#language-en').addClass('language-no-selected');
+        $('#language-es').addClass('language-no-selected');
+        $('#language-fr').addClass('language-no-selected');
+
+        $('#img-language-auto').attr('src','./img/languages/auto-2-bn.png');
+        $('#img-language-auto-xs').attr('src','./img/languages/auto-2-bn.png');
+        $('#img-language-en').attr('src','./img/languages/en-2-bn.png');
+        $('#img-language-en-xs').attr('src','./img/languages/en-2-bn.png');
+        $('#img-language-es').attr('src','./img/languages/es-2-bn.png');
+        $('#img-language-es-xs').attr('src','./img/languages/es-2-bn.png');
+        $('#img-language-fr').attr('src','./img/languages/fr-2-bn.png');
+        $('#img-language-fr-xs').attr('src','./img/languages/fr-2-bn.png');
+    }
 });
