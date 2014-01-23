@@ -26,7 +26,7 @@ echo "FROM=$FROM"
 FOLDERTO=$GIT_PAGES_FOLDER
 #echo "FOLDERTO=$FOLDERTO"
 
-TO="$GIT_PAGES_FOLDER/markdownslides"
+TO="$GIT_PAGES_FOLDER/tweets-sentiment-client-bootstrap"
 echo "TO=$TO"
 
 DATE=`date +"%Y.%m.%d-%H:%M"`
