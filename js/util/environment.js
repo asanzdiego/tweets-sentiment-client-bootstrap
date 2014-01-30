@@ -1,10 +1,10 @@
 
-/*****************************
- * ENVIRONMENT = DEVELOPMENT *
- *****************************/
+/****************************
+ * ENVIRONMENT = PRODUCTION *
+ ****************************/
 
 // version
-var util_version = "jue ene 23 14:49:32 CET 2014"
+var util_version = "jue ene 30 21:56:36 CET 2014"
 
 // Server URL
 var util_server_url = "http://tweetssentiment.herokuapp.com";
